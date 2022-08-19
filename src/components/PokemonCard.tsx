@@ -1,5 +1,6 @@
 import { useGetPokemonByNameQuery } from '@/services/pokemon';
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
 type props = {
     name: string,
@@ -10,7 +11,6 @@ const PokemonCard = ({ name }: props) => {
         skip: !name,
     });
 
-    console.log(data);
     return (
         <>
             {data && <Link to={`/pokemon/${data.name}`}>{data.name}</Link>}
@@ -18,4 +18,4 @@ const PokemonCard = ({ name }: props) => {
     )
 }
 
-export default PokemonCard;
+export default memo(PokemonCard);
