@@ -1,7 +1,8 @@
 import { FC } from 'react';
-import { useFormik, useContext } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import {useCreatePostMutation} from "@/services/posts";
+import { useCreatePostMutation } from '@/services/posts';
+import { useContext } from 'react';
 
 import { StoreContext } from '@/components/StoreContext';
 
@@ -26,18 +27,16 @@ const PostAddForm: FC<Props> = ({ url, }) => {
         }),
         onSubmit: values => {
             createPost(values);
-            console.log(result);
         }
     });
 
     // Privilégier cette méthode pour consommer data
-    const { name, setName } = useContext(StoreContext);
 
     return (
         <>
             <StoreContext.Consumer>
                 {
-                    ({name, setName}) => (
+                    () => (
                         <div>
                             { result.isSuccess &&
                                 <div className={'text-green-500'}>Vous avez bien créé un post</div>

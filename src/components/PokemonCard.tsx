@@ -11,10 +11,18 @@ const PokemonCard = ({ name }: props) => {
         skip: !name,
     });
 
+    console.log(data);
+
     return (
-        <>
-            {data && <Link to={`/pokemon/${data.name}`}>{data.name}</Link>}
-        </>
+        data && (
+            <div className={'flex flex-col items-center gap-y-[10px]'}>
+                <Link to={`/pokemon/${data.name}`}>
+                    <img src={data.sprites.front_default} />
+                    <p className={'text-center'}>{data.name}</p>
+                </Link>
+            </div>
+        )
+
     )
 }
 
